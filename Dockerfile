@@ -16,5 +16,4 @@ COPY . .
 # Expose the port (optional, depends on your app configuration)
 EXPOSE 5173
 
-# Run the development server
-CMD ["yarn", "start"]
+CMD ["yarn", "run", "serve", "--host"]

@@ -5,9 +5,9 @@ import { get } from '@/libs/http';
 import type { StakingParam, StakingPool, Validator } from '@/types';
 import { CosmosRestClient } from '@/libs/client';
 import { consensusPubkeyToHexAddress, pubKeyToValcons, valconsToBase64 } from '@/libs';
-import { toHex, fromBase64, toBase64, fromHex, fromBech32 } from '@cosmjs/encoding';
+import { toBase64, fromHex, fromBech32 } from '@cosmjs/encoding';
 import { useBaseStore } from './useBaseStore';
-
+import { PotentialConsensusPower, PowerReduction } from '@/types';
 export const useStakingStore = defineStore('stakingStore', {
   state: () => {
     return {
@@ -31,7 +31,7 @@ export const useStakingStore = defineStore('stakingStore', {
   getters: {
     totalPower(): number {
       const sum = (s: number, e: Validator) => {
-        return s + parseInt(e.delegator_shares);
+        return s + PotentialConsensusPower(e.capital, PowerReduction.toString());
       };
       return this.validators ? this.validators.reduce(sum, 0) : 0;
     },
@@ -152,8 +152,9 @@ export const useStakingStore = defineStore('stakingStore', {
     async fetchValidators(status: string, limit = 300) {
       return this.blockchain.rpc?.getStakingValidators(status, limit).then((res) => {
         const vals = res.validators.sort(
-          (a, b) => Number(b.delegator_shares) - Number(a.delegator_shares)
+          (a, b) => PotentialConsensusPower(b.capital, PowerReduction.toString()) - PotentialConsensusPower(a.capital, PowerReduction.toString())
         );
+
         if (status === 'BOND_STATUS_BONDED') {
           this.validators = vals;
         }

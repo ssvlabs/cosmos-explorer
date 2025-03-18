@@ -27,24 +27,29 @@ const text = computed(() => {
   if(!props.value) return ""
   const v = String(props.value)
   switch(true) {
-    case v.length === 28 && v.endsWith("="): {
-      return format.validator(v) || v
-    }
-    // 2023-06-12T03:09:38.253756368Z
-    case v.search(/^[1-9]\d{3}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}[.\d]*Z$/g) > -1: {
-      return new Date(v).toLocaleString(navigator.language)
-    }
+    case v.length === 28 && v.endsWith("="):
+      try {
+        const hexValue = toHex(fromBase64(v));
+        return "0x" + hexValue.toUpperCase();
+      } catch (e) {
+        return v;
+      }
     case toHexOutput.value:
-      return toHex(fromBase64(v)).toUpperCase()
+      try {
+        return toHex(fromBase64(v)).toUpperCase()
+      } catch (e) {
+        return v
+      }
+    default:
+      return v
   }
-  return v
 })
 
 const names = ref([] as {name?: string | null, provider?: string}[])
 
 onMounted(() => {
   if(isAddress()) nameMatcha.lookupAll(props.value).then(re => {
-    names.value = Object.keys(re).map(key => ({name: re[key], provider: key})).filter( x => x.name)
+    names.value = Object.keys(re).map(key => ({name: re[key], provider: key})).filter(x => x.name)
   })
 })
 const toHexOutput = ref(false)

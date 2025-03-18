@@ -40,6 +40,15 @@ export function consensusPubkeyToHexAddress(consensusPubkey?: {
     const pubkey = fromBase64(consensusPubkey.key);
     if (pubkey) return toHex(new Ripemd160().update(sha256(pubkey)).digest());
   }
+
+  if (consensusPubkey['@type'] === '/cosmos.crypto.bls12_381.PubKey') {
+    const pubkey = fromBase64(consensusPubkey.key);
+    if (pubkey) {
+      // BLS uses SHA256 truncated to 20 bytes (similar to Ed25519 but we truncate to 20 bytes)
+      return toHex(sha256(pubkey)).slice(0, 40).toUpperCase();
+    }
+  }
+
   return raw;
 }
 

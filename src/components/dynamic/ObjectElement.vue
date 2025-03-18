@@ -17,7 +17,7 @@ const props = defineProps(['value']);
             <div class="overflow-hidden w-auto whitespace-normal" >
               <Component
                 v-if="v"
-                :is="select(v, 'horizontal')"
+                :is="select(v, k === 'percentage' ? 'percentage' : 'horizontal')"
                 :value="v"
               ></Component>
             </div>

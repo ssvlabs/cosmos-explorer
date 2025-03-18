@@ -10,7 +10,7 @@ import {
 import { computed } from '@vue/reactivity';
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue';
-import type { Key, SlashingParam, Validator } from '@/types';
+import {type Key, PotentialConsensusPower, PowerReduction, type SlashingParam, type Validator} from '@/types';
 import { formatSeconds}  from '@/libs/utils'
 import { diff } from 'semver';
 
@@ -116,20 +116,32 @@ const change24Color = (entry: { consensus_pubkey: Key; tokens: string }) => {
 };
 
 const calculateRank = function (position: number) {
-    let sum = 0;
-    for (let i = 0; i < position; i++) {
-        sum += Number(staking.validators[i]?.delegator_shares);
-    }
-    const percent = sum / staking.totalPower;
-
-    switch (true) {
-        case tab.value === 'active' && percent < 0.33:
-            return 'error';
-        case tab.value === 'active' && percent < 0.67:
-            return 'warning';
-        default:
+    // Get the validator at the current position
+    const sortedValidators = [...staking.validators].sort((a, b) => 
+        PotentialConsensusPower(b.capital, PowerReduction.toString()) - 
+        PotentialConsensusPower(a.capital, PowerReduction.toString())
+    );
+    
+    // Calculate cumulative voting power
+    let cumulativePower = 0;
+    for (let i = 0; i < sortedValidators.length; i++) {
+        const validatorPower = PotentialConsensusPower(sortedValidators[i].capital, PowerReduction.toString());
+        cumulativePower += validatorPower;
+        
+        // If we've reached our position, calculate the percentage and determine rank
+        if (i === position) {
+            const percent = staking.totalPower > 0 ? cumulativePower / staking.totalPower : 0;
+            
+            if (tab.value === 'active') {
+                if (percent <= 0.33) return 'error';
+                if (percent <= 0.67) return 'warning';
+            }
+            
             return 'primary';
+        }
     }
+    
+    return 'primary';
 };
 
 function isFeatured(endpoints: string[], who?: {website?: string, moniker: string }) {
@@ -403,22 +415,12 @@ loadAvatars();
                                 <div class="flex flex-col">
                                     <h6 class="text-sm font-weight-medium whitespace-nowrap ">
                                         {{
-                                            format.formatToken(
-                                                {
-                                                    amount: parseInt(
-                                                        v.tokens
-                                                    ).toString(),
-                                                    denom: staking.params
-                                                        .bond_denom,
-                                                },
-                                                true,
-                                                '0,0'
-                                            )
+                                            format.formatCapital(v.capital)
                                         }}
                                     </h6>
                                     <span class="text-xs">{{
                                         format.calculatePercent(
-                                            v.delegator_shares,
+                                            PotentialConsensusPower(v.capital, PowerReduction.toString()),
                                             staking.totalPower
                                         )
                                     }}</span>

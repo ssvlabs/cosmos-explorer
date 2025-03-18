@@ -3,6 +3,7 @@ import TextElement from './TextElement.vue';
 import ArrayElement from './ArrayElement.vue';
 import UInt8Array from './UInt8Array.vue';
 import NumberElement from './NumberElement.vue';
+import PercentageElement from './PercentageElement.vue';
 import TokenElement from './TokenElement.vue';
 import ObjectHorizontalElement from './ObjectHorizontalElement.vue';
 import Long from 'long';
@@ -11,6 +12,13 @@ export function select(v: any, direct?: string) {
   // if(k === 'txs' && v) {
   //     return TxsElement
   // } else {
+
+  
+  if (direct === "percentage") {
+    return PercentageElement
+  }
+
+  
   const type = typeof v;
   switch (type) {
     case 'object':

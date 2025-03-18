@@ -1,12 +1,11 @@
-import type { Key, PaginatedResponse, Coin } from "./common"
+import type { Key, PaginatedResponse, Coin, Capital } from "./common"
 
 export interface Validator {
     "operator_address": string,
     "consensus_pubkey": Key,
     "jailed": boolean,
     "status": string,
-    "tokens": string,
-    "delegator_shares": string,
+    "capital": Capital,
     "description": {
         "moniker": string,
         "identity"?: string,
@@ -18,8 +17,6 @@ export interface Validator {
     "unbonding_time": string,
     "commission": CommissionRate,
     "min_self_delegation": string,
-    "liquid_shares": string,
-    "validator_bond_shares": string
 }
 
 export interface CommissionRate {

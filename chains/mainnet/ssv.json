@@ -2,10 +2,10 @@
     "chain_name": "ssv",
     "registry_name": "ssvchain",
     "api": [
-        {"provider": "localhost", "address": "http://localhost:1317"}
+        {"provider": "localhost", "address": "http://localhost:1337"}
     ],
     "rpc": [
-        {"provider": "localhost", "address": "http://localhost:26657"}
+        {"provider": "localhost", "address": "http://localhost:26677"}
     ],
     "sdk_version": "0.50.11",
     "coin_type": "118",

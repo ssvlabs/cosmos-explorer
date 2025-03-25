@@ -497,7 +497,7 @@ function shortenAddress(address: string, prefixLength: number = 6, suffixLength:
     '0x1c7e51d7390ede6f473e0b7c9c94a65a8d9b6fa4': 'Sepolia Deployer',
     // Token addresses
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee': 'ETH',
-    '0x779877a7b0d9e8603169ddbd7836e478b4624789': 'LINK',
+    '0x00996ca3d4dc41f5bc626ecb3eedb241d4c88d18': 'SSV',
     '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': 'USDC',
     '0xdac17f958d2ee523a2206206994597c13d831ec7': 'USDT',
     // Add more aliases as needed
@@ -571,9 +571,9 @@ function formatAmount(amount: string | number, tokenAddress?: string): string {
     if (tokenAddress === "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee") {
       return numeral(numAmount / 1e18).format('0,0.0000') + ' ETH';
     }
-    // LINK formatting (18 decimals)
-    else if (tokenAddress === "0x779877a7b0d9e8603169ddbd7836e478b4624789") {
-      return numeral(numAmount / 1e18).format('0,0.0000') + ' LINK';
+    // SSV formatting (18 decimals)
+    else if (tokenAddress === "0x00996ca3d4dc41f5bc626ecb3eedb241d4c88d18") {
+      return numeral(numAmount / 1e18).format('0,0.0000') + ' SSV';
     }
     // USDC formatting (6 decimals)
     else if (tokenAddress === "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48") {

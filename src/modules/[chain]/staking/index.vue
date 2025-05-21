@@ -236,66 +236,66 @@ loadAvatars();
 </script>
 <template>
 <div>
-    <div class="bg-base-100 rounded-lg grid sm:grid-cols-1 md:grid-cols-4 p-4" >    
-        <div class="flex">
-            <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
-                    <Icon class="text-success" icon="mdi:trending-up" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-success"></div>
-                </div>
-            </span>
-            <span>
-                <div class="font-bold">{{ format.percent(mintStore.inflation) }}</div>
-                <div class="text-xs">{{ $t('staking.inflation') }}</div>
-            </span>
-        </div>
-        <div class="flex">
-            <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
-                    <Icon class="text-primary" icon="mdi:lock-open-outline" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-primary"></div>
-                </div>
-            </span>
-            <span>
-                <div class="font-bold">{{ formatSeconds(staking.params?.unbonding_time) }}</div>
-                <div class="text-xs">{{ $t('staking.unbonding_time') }}</div>
-            </span>
-        </div> 
-        <div class="flex">
-            <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
-                    <Icon class="text-error" icon="mdi:alert-octagon-outline" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>
-                </div>
-            </span>
-            <span>
-            <div class="font-bold">{{ format.percent(slashing.slash_fraction_double_sign) }}</div>
-            <div class="text-xs">{{ $t('staking.double_sign_slashing') }}</div>
-            </span>
-        </div> 
-        <div class="flex">
-            <span>
-                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">
-                    <Icon class="text-error" icon="mdi:pause" size="32" />
-                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>
-                </div>
-            </span>
-            <span>
-            <div class="font-bold">{{ format.percent(slashing.slash_fraction_downtime) }}</div>
-            <div class="text-xs">{{ $t('staking.downtime_slashing') }}</div>
-            </span>
-        </div>  
-    </div>
+<!--    <div class="bg-base-100 rounded-lg grid sm:grid-cols-1 md:grid-cols-4 p-4" >    -->
+<!--        <div class="flex">-->
+<!--            <span>-->
+<!--                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">-->
+<!--                    <Icon class="text-success" icon="mdi:trending-up" size="32" />-->
+<!--                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-success"></div>-->
+<!--                </div>-->
+<!--            </span>-->
+<!--            <span>-->
+<!--                <div class="font-bold">{{ format.percent(mintStore.inflation) }}</div>-->
+<!--                <div class="text-xs">{{ $t('staking.inflation') }}</div>-->
+<!--            </span>-->
+<!--        </div>-->
+<!--        <div class="flex">-->
+<!--            <span>-->
+<!--                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">-->
+<!--                    <Icon class="text-primary" icon="mdi:lock-open-outline" size="32" />-->
+<!--                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-primary"></div>-->
+<!--                </div>-->
+<!--            </span>-->
+<!--            <span>-->
+<!--                <div class="font-bold">{{ formatSeconds(staking.params?.unbonding_time) }}</div>-->
+<!--                <div class="text-xs">{{ $t('staking.unbonding_time') }}</div>-->
+<!--            </span>-->
+<!--        </div> -->
+<!--        <div class="flex">-->
+<!--            <span>-->
+<!--                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">-->
+<!--                    <Icon class="text-error" icon="mdi:alert-octagon-outline" size="32" />-->
+<!--                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>-->
+<!--                </div>-->
+<!--            </span>-->
+<!--            <span>-->
+<!--            <div class="font-bold">{{ format.percent(slashing.slash_fraction_double_sign) }}</div>-->
+<!--            <div class="text-xs">{{ $t('staking.double_sign_slashing') }}</div>-->
+<!--            </span>-->
+<!--        </div> -->
+<!--        <div class="flex">-->
+<!--            <span>-->
+<!--                <div class="relative w-9 h-9 rounded overflow-hidden flex items-center justify-center mr-2">-->
+<!--                    <Icon class="text-error" icon="mdi:pause" size="32" />-->
+<!--                    <div class="absolute top-0 left-0 bottom-0 right-0 opacity-20 bg-error"></div>-->
+<!--                </div>-->
+<!--            </span>-->
+<!--            <span>-->
+<!--            <div class="font-bold">{{ format.percent(slashing.slash_fraction_downtime) }}</div>-->
+<!--            <div class="text-xs">{{ $t('staking.downtime_slashing') }}</div>-->
+<!--            </span>-->
+<!--        </div>  -->
+<!--    </div>-->
 
     <div>
         <div class="flex items-center justify-between py-1">
             <div class="tabs tabs-boxed bg-transparent">
-                <a
-                    class="tab text-gray-400"
-                    :class="{ 'tab-active': tab === 'featured' }"
-                    @click="tab = 'featured'"
-                    >{{ $t('staking.popular') }}</a
-                >
+<!--                <a-->
+<!--                    class="tab text-gray-400"-->
+<!--                    :class="{ 'tab-active': tab === 'featured' }"-->
+<!--                    @click="tab = 'featured'"-->
+<!--                    >{{ $t('staking.popular') }}</a-->
+<!--                >-->
                 <a
                     class="tab text-gray-400"
                     :class="{ 'tab-active': tab === 'active' }"
@@ -329,9 +329,9 @@ loadAvatars();
                             </th>
                             <th scope="col" class="uppercase">{{ $t('staking.validator') }}</th>
                             <th scope="col" class="text-right uppercase">{{ $t('staking.voting_power') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ $t('staking.24h_changes') }}</th>
-                            <th scope="col" class="text-right uppercase">{{ $t('staking.commission') }}</th>
-                            <th scope="col" class="text-center uppercase">{{ $t('staking.actions') }}</th>
+<!--                            <th scope="col" class="text-right uppercase">{{ $t('staking.24h_changes') }}</th>-->
+<!--                            <th scope="col" class="text-right uppercase">{{ $t('staking.commission') }}</th>-->
+<!--                            <th scope="col" class="text-center uppercase">{{ $t('staking.actions') }}</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -418,77 +418,83 @@ loadAvatars();
                                             format.formatCapital(v.capital)
                                         }}
                                     </h6>
-                                    <span class="text-xs">{{
-                                        format.calculatePercent(
-                                            PotentialConsensusPower(v.capital, PowerReduction.toString()),
-                                            staking.totalPower
-                                        )
+<!--                                    <span class="text-xs">{{-->
+<!--                                        format.calculatePercent(-->
+<!--                                            PotentialConsensusPower(v.capital, PowerReduction.toString()),-->
+<!--                                            staking.totalPower-->
+<!--                                        )-->
+<!--                                    }}</span>-->
+                                  <span v-if="tab === 'active'" class="text-xs">{{
+                                      format.calculatePercent(
+                                          PotentialConsensusPower(v.capital, PowerReduction.toString()),
+                                          staking.totalPower
+                                      )
                                     }}</span>
                                 </div>
                             </td>
-                            <!-- 👉 24h Changes -->
-                            <td
-                                class="text-right text-xs"
-                                :class="change24Color(v)"
-                            >
-                                {{ change24Text(v) }}
-                            </td>
+<!--                             👉 24h Changes-->
+<!--                            <td-->
+<!--                                class="text-right text-xs"-->
+<!--                                :class="change24Color(v)"-->
+<!--                            >-->
+<!--                                {{ change24Text(v) }}-->
+<!--                            </td>-->
                             <!-- 👉 commission -->
-                            <td class="text-right text-xs">
-                                {{
-                                    format.formatCommissionRate(
-                                        v.commission?.commission_rates?.rate
-                                    )
-                                }}
-                            </td>
+<!--                            <td class="text-right text-xs">-->
+<!--                                {{-->
+<!--                                    format.formatCommissionRate(-->
+<!--                                        v.commission?.commission_rates?.rate-->
+<!--                                    )-->
+<!--                                }}-->
+<!--                            </td>-->
                             <!-- 👉 Action -->
-                            <td class="text-center">
-                                <div
-                                    v-if="v.jailed"
-                                    class="badge badge-error gap-2 text-white"
-                                >
-                                {{ $t('staking.jailed') }}
-                                </div>
-                                <label
-                                    v-else
-                                    for="delegate"
-                                    class="btn btn-xs btn-primary rounded-sm capitalize"
-                                    @click="
-                                        dialog.open('delegate', {
-                                            validator_address:
-                                                v.operator_address,
-                                        })
-                                    "
-                                    >{{ $t('account.btn_delegate') }}</label
-                                >
-                            </td>
+<!--                            <td class="text-center">-->
+<!--                                <div-->
+<!--                                    v-if="v.jailed"-->
+<!--                                    class="badge badge-error gap-2 text-white"-->
+<!--                                >-->
+<!--                                {{ $t('staking.jailed') }}-->
+<!--                                </div>-->
+<!--                                <label-->
+<!--                                    v-else-->
+<!--                                    for="delegate"-->
+<!--                                    class="btn btn-xs btn-primary rounded-sm capitalize"-->
+<!--                                    @click="-->
+<!--                                        dialog.open('delegate', {-->
+<!--                                            validator_address:-->
+<!--                                                v.operator_address,-->
+<!--                                        })-->
+<!--                                    "-->
+<!--                                    >{{ $t('account.btn_delegate') }}</label-->
+<!--                                >-->
+<!--                            </td>-->
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="divider"></div>
-            <div class="flex flex-row items-center">
-                <div
-                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-error mr-2"
-                >
-                    <span
-                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-error"
-                    ></span>
-                    {{ $t('staking.top') }} 33%
-                </div>
-                <div
-                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-warning"
-                >
-                    <span
-                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-warning"
-                    ></span>
-                    {{ $t('staking.top') }} 67%
-                </div>
-                <div class="text-xs hidden md:!block pl-2">
-                    {{ $t('staking.description') }}
-                </div>
-            </div>
+<!--            <div class="flex flex-row items-center">-->
+<!--                <div-->
+<!--                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-error mr-2"-->
+<!--                >-->
+<!--                    <span-->
+<!--                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-error"-->
+<!--                    ></span>-->
+<!--                    {{ $t('staking.top') }} 33%-->
+<!--                </div>-->
+<!--                <div-->
+<!--                    class="text-xs truncate relative py-2 px-4 rounded-md w-fit text-warning"-->
+<!--                >-->
+<!--                    <span-->
+<!--                        class="inset-x-0 inset-y-0 opacity-10 absolute bg-warning"-->
+<!--                    ></span>-->
+<!--                    {{ $t('staking.top') }} 67%-->
+<!--                </div>-->
+<!--                <div class="text-xs hidden md:!block pl-2">-->
+<!--                    {{ $t('staking.description') }}-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </div>
